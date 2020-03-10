@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitClientInstance {
 
-    private static final String BASE_URL = "https://www.w3schools.com/xml/";
+    private static final String BASE_URL = "http://maximo.grandbesancon.fr/maxrest/rest/os/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {

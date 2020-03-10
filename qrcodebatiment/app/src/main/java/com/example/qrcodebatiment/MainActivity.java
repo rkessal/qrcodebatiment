@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.qrcodebatiment.models.Batiment;
 import com.example.qrcodebatiment.models.Breakfast;
 import com.example.qrcodebatiment.network.GetDataService;
 import com.example.qrcodebatiment.network.RetrofitClientInstance;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     String str = "";
     public static TextView text;
     Button btn;
-    final String TAG = "TAG";
+    final String TAG = "MainAcivity";
+    public static String batiment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,21 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn);
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<Breakfast> call = service.getInfoBatiment();
+
+
+        if (batiment == null) {
+            batiment  = "";
+        }
+        Call<Breakfast> call = service.getInfoBatiment(batiment);
+        Log.d(TAG, "onCreate: " + batiment);
+
 
         call.enqueue(new Callback<Breakfast>() {
             @Override
             public void onResponse(Call<Breakfast> call, Response<Breakfast> response) {
-                str += response.body().getFoodList().get(2).getName();
+                str += response;
                 Log.d(TAG, "onResponse: " + str);
-                text.setText(str);
+                text.setText(str +"   " + batiment);
             }
 
             @Override
@@ -49,10 +58,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: " + batiment);
+                finish();
                 startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
+
+
             }
         });
 

@@ -5,10 +5,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.qrcodebatiment.models.Batiment;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -16,6 +18,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     String TAG = "ScanCodeActivity";
+    private String NUMBATIMENT = "";
     private ZXingScannerView mScannerView;
 
     @Override
@@ -30,9 +33,13 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
-        MainActivity.text.setText(result.getText());
+        String[] DATA = result.getText().split("/");
+        String GET[] = DATA[DATA.length - 1].split("~eq~");
+        NUMBATIMENT = GET[GET.length - 1];
+        MainActivity.batiment = NUMBATIMENT;
+        Log.d(TAG, "handleResult: " + NUMBATIMENT);
         mScannerView.resumeCameraPreview(this);
-        onBackPressed();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     @Override
@@ -46,6 +53,5 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         super.onResume();
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
-        Log.d(TAG, "onResume: ok c'est bon  " + mScannerView);
     }
 }
