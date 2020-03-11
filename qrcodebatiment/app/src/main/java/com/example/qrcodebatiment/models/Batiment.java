@@ -1,25 +1,35 @@
 package com.example.qrcodebatiment.models;
 
+import com.tickaroo.tikxml.annotation.Element;
+import com.tickaroo.tikxml.annotation.PropertyElement;
 import com.tickaroo.tikxml.annotation.Xml;
 
-@Xml
-public class Batiment {
+import java.util.List;
 
-    private String numBatiment;
+@Xml(name = "ASSET")
+public class Batiment {
+    @PropertyElement
+    String ASSETNUM;
+
+    @PropertyElement
+    String DESCRIPTION;
+
+    @Element
+    List<PieceJointe> DOCLINKS;
 
     public Batiment() {
 
     }
 
-    public Batiment(String numBatiment) {
-        this.numBatiment = numBatiment;
+    public String getASSETNUM() {
+        return ASSETNUM;
     }
 
-    public String getNumBatiment() {
-        return numBatiment;
+    public String getDESCRIPTION() {
+        return DESCRIPTION;
     }
 
-    public void setNumBatiment(String numBatiment) {
-        this.numBatiment = numBatiment;
+    public List<PieceJointe> getDOCLINKS() {
+        return DOCLINKS;
     }
 }

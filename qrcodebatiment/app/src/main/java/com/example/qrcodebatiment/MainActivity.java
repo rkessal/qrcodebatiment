@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.qrcodebatiment.models.Batiment;
-import com.example.qrcodebatiment.models.Breakfast;
+import com.example.qrcodebatiment.models.MXAsset;
 import com.example.qrcodebatiment.network.GetDataService;
 import com.example.qrcodebatiment.network.RetrofitClientInstance;
 
@@ -39,24 +38,26 @@ public class MainActivity extends AppCompatActivity {
 
         if (batiment == null) {
             batiment  = "";
+        }else {
+            Call<MXAsset> call = service.getInfoBatiment(batiment);
+            Log.d(TAG, "onCreate: " + batiment);
+
+
+            call.enqueue(new Callback<MXAsset>() {
+                @Override
+                public void onResponse(Call<MXAsset> call, Response<MXAsset> response) {
+                    str += response.body().getMXASSETSet().getBatiment().getDESCRIPTION();
+                    Log.d(TAG, "onResponse: " + str);
+                    text.setText(str);
+                }
+
+                @Override
+                public void onFailure(Call<MXAsset> call, Throwable t) {
+                    Log.d(TAG, "Erreur : " + t.getMessage());
+                }
+            });
         }
-        Call<Breakfast> call = service.getInfoBatiment(batiment);
-        Log.d(TAG, "onCreate: " + batiment);
 
-
-        call.enqueue(new Callback<Breakfast>() {
-            @Override
-            public void onResponse(Call<Breakfast> call, Response<Breakfast> response) {
-                str += response;
-                Log.d(TAG, "onResponse: " + str);
-                text.setText(str +"   " + batiment);
-            }
-
-            @Override
-            public void onFailure(Call<Breakfast> call, Throwable t) {
-                Log.d(TAG, "Erreur : " + t.getMessage());
-            }
-        });
 
 
 

@@ -1,4 +1,4 @@
-package com.example.qrcodebatiment.models;
+package com.example.qrcodebatiment.test;
 
 import com.tickaroo.tikxml.annotation.PropertyElement;
 import com.tickaroo.tikxml.annotation.Xml;

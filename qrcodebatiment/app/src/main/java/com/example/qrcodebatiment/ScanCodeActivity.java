@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.qrcodebatiment.models.Batiment;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -34,7 +33,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
     @Override
     public void handleResult(Result result) {
         String[] DATA = result.getText().split("/");
-        String GET[] = DATA[DATA.length - 1].split("~eq~");
+        String GET[] = DATA[DATA.length - 1].split("=");
         NUMBATIMENT = GET[GET.length - 1];
         MainActivity.batiment = NUMBATIMENT;
         Log.d(TAG, "handleResult: " + NUMBATIMENT);
