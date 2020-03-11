@@ -3,8 +3,8 @@ package com.example.qrcodebatiment.models;
 import com.tickaroo.tikxml.annotation.PropertyElement;
 import com.tickaroo.tikxml.annotation.Xml;
 
-@Xml
-class PieceJointe {
+@Xml(name = "DOCLINKS")
+public class PieceJointe {
     @PropertyElement
     String DESCRIPTION;
 
@@ -28,5 +28,10 @@ class PieceJointe {
 
     public String getWEBURL() {
         return WEBURL;
+    }
+
+    public String getNameUrl() {
+        String[] url = this.getWEBURL().split("/");
+        return url[url.length - 1];
     }
 }

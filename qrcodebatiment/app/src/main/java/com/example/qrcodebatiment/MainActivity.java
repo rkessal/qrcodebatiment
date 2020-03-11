@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.qrcodebatiment.models.MXAsset;
+import com.example.qrcodebatiment.models.PieceJointe;
 import com.example.qrcodebatiment.network.GetDataService;
 import com.example.qrcodebatiment.network.RetrofitClientInstance;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,6 +24,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     String str = "";
+    ArrayList<PieceJointe> pieceJointes = new ArrayList<>();
     public static TextView text;
     Button btn;
     final String TAG = "MainAcivity";
@@ -47,8 +52,19 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<MXAsset> call, Response<MXAsset> response) {
                     str += response.body().getMXASSETSet().getBatiment().getDESCRIPTION();
+
                     Log.d(TAG, "onResponse: " + str);
                     text.setText(str);
+                    if (response.body().getMXASSETSet().getBatiment().getDOCLINKS() != null) {
+                        pieceJointes.addAll(response.body().getMXASSETSet().getBatiment().getDOCLINKS());
+                        ArrayList<PieceJointe> arrayOfPieceJointes = new ArrayList<PieceJointe>();
+                        PieceJointeAdapter adapter = new PieceJointeAdapter(getApplicationContext(), arrayOfPieceJointes);
+                        ListView listView = (ListView) findViewById(R.id.lvItems);
+                        listView.setAdapter(adapter);
+                        adapter.addAll(pieceJointes);
+                    }
+
+
                 }
 
                 @Override
