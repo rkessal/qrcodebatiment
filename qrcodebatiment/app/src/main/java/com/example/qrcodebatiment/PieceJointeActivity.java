@@ -29,6 +29,7 @@ public class PieceJointeActivity extends AppCompatActivity {
     ArrayList<PieceJointe> pieceJointes = new ArrayList<>();
 
     public TextView descBatiment;
+    public TextView numBatiment;
     public Button btnRetour;
 
     @Override
@@ -39,6 +40,7 @@ public class PieceJointeActivity extends AppCompatActivity {
 
 
         descBatiment = findViewById(R.id.tvDescBatiment);
+        numBatiment = findViewById(R.id.tvNumBatiment);
         btnRetour = findViewById(R.id.btnRetour);
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -54,6 +56,7 @@ public class PieceJointeActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<MXAsset> call, Response<MXAsset> response) {
                     if (response.body().getMXASSETSet().getBatiment() != null) {
+                        numBatiment.setText(response.body().getMXASSETSet().getBatiment().getASSETNUM());
                         descBatiment.setText(response.body().getMXASSETSet().getBatiment().getDESCRIPTION());
 
                         if (response.body().getMXASSETSet().getBatiment().getDOCLINKS() != null) {

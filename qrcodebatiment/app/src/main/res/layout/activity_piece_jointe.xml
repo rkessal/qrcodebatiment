@@ -5,22 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PieceJointeActivity">
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_gravity="center"
+                android:textColor="@color/colorBlackText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NUM BATIMENT"
+                android:id="@+id/tvNumBatiment"/>
 
-    <TextView
-        android:id="@+id/tvDescBatiment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
-    <ListView
-        app:layout_constraintTop_toBottomOf="@id/tvDescBatiment"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvItems"/>
-
+            <TextView
+                android:id="@+id/tvDescBatiment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlackText"
+                android:text="DESC BATIMENT"
+                app:layout_constraintTop_toBottomOf="@id/tvNumBatiment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+                <ListView
+                    app:layout_constraintTop_toBottomOf="@id/tvDescBatiment"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="35dp"
+                    android:id="@+id/lvItems"
+                    android:divider="@android:color/transparent"
+                    android:paddingBottom="40dp"
+                    android:scrollbars="none"
+                    android:clipToPadding="false"
+                    android:dividerHeight="10.0sp"/>
+        </LinearLayout>
     <Button
         android:id="@+id/btnRetour"
         android:layout_width="match_parent"
@@ -29,5 +54,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="RETOUR"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

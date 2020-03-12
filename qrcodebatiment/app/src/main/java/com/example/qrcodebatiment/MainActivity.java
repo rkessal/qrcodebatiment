@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,10 +24,13 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+
     String str = "";
     ArrayList<PieceJointe> pieceJointes = new ArrayList<>();
     public static TextView text;
     Button btn;
+    Button btnIdBatiment;
+    EditText etIdBatiment;
     final String TAG = "MainAcivity";
     public static String batiment;
 
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = findViewById(R.id.btn);
+        btnIdBatiment = findViewById(R.id.btnIdBatiment);
+        etIdBatiment = findViewById(R.id.etIdBatiment);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
             }
         });
+
+        btnIdBatiment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (etIdBatiment != null) {
+                    PieceJointeActivity.idBatiment = etIdBatiment.getText().toString().trim().toUpperCase();
+                    startActivity(new Intent(getApplicationContext(), PieceJointeActivity.class));
+                }
+            }
+        });
+
+
 
 
 

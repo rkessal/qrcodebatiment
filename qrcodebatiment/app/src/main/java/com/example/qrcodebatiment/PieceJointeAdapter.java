@@ -46,14 +46,15 @@ public class PieceJointeAdapter extends ArrayAdapter<PieceJointe> {
         TextView tvDesc = convertView.findViewById(R.id.description);
         TextView tvType = convertView.findViewById(R.id.type);
         TextView tvPieceJointe = convertView.findViewById(R.id.pieceJointe);
+        TextView DLPieceJointe = convertView.findViewById(R.id.DLPieceJointe);
 
         tvDesc.setText(pj.getDESCRIPTION());
         tvType.setText(pj.getDOCTYPE());
         tvPieceJointe.setText(pj.getNameUrl());
-        tvPieceJointe.setTag(position);
+        DLPieceJointe.setTag(position);
 
 
-        tvPieceJointe.setOnClickListener(new View.OnClickListener() {
+        DLPieceJointe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

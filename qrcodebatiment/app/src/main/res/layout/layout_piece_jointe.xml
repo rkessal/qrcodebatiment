@@ -2,29 +2,85 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:layout_marginBottom="35dp"
+    android:background="@drawable/shape_piece_jointe_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:text="description"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="type"
-        app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
         android:layout_marginTop="15dp"
-        android:text="piece jointe"
-        android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@id/type"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/pieceJointe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lbDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DESCRIPTION"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlackText"
+                />
+            <TextView
+                android:text="description"
+                android:textColor="@color/colorBlackText"
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/lbType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TYPE"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlackText"
+                />
+            <TextView
+                android:text="type"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/type"
+                android:textColor="@color/colorBlackText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/lbPieceJointe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PIECE JOINTE"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlackText"
+                />
+            <TextView
+                android:text="piece jointe"
+                android:id="@+id/pieceJointe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlackText"
+                />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/DLPieceJointe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:text="TELECHARGER"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
