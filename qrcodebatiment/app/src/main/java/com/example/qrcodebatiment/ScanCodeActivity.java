@@ -26,6 +26,9 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 123);
         }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+        }
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
     }
@@ -35,9 +38,15 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         String[] DATA = result.getText().split("/");
         String GET[] = DATA[DATA.length - 1].split("=");
         NUMBATIMENT = GET[GET.length - 1];
-        MainActivity.batiment = NUMBATIMENT;
+        PieceJointeActivity.idBatiment = NUMBATIMENT;
         Log.d(TAG, "handleResult: " + NUMBATIMENT);
         mScannerView.resumeCameraPreview(this);
+        startActivity(new Intent(getApplicationContext(), PieceJointeActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 

@@ -34,48 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        text = findViewById(R.id.test);
         btn = findViewById(R.id.btn);
-
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-
-
-        if (batiment == null) {
-            batiment  = "";
-        }else {
-            Call<MXAsset> call = service.getInfoBatiment(batiment);
-            Log.d(TAG, "onCreate: " + batiment);
-
-
-            call.enqueue(new Callback<MXAsset>() {
-                @Override
-                public void onResponse(Call<MXAsset> call, Response<MXAsset> response) {
-                    str += response.body().getMXASSETSet().getBatiment().getDESCRIPTION();
-
-                    Log.d(TAG, "onResponse: " + str);
-                    text.setText(str);
-                    if (response.body().getMXASSETSet().getBatiment().getDOCLINKS() != null) {
-                        pieceJointes.addAll(response.body().getMXASSETSet().getBatiment().getDOCLINKS());
-                        ArrayList<PieceJointe> arrayOfPieceJointes = new ArrayList<PieceJointe>();
-                        PieceJointeAdapter adapter = new PieceJointeAdapter(getApplicationContext(), arrayOfPieceJointes);
-                        ListView listView = (ListView) findViewById(R.id.lvItems);
-                        listView.setAdapter(adapter);
-                        adapter.addAll(pieceJointes);
-                    }
-
-
-                }
-
-                @Override
-                public void onFailure(Call<MXAsset> call, Throwable t) {
-                    Log.d(TAG, "Erreur : " + t.getMessage());
-                }
-            });
-        }
-
-
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: " + batiment);
                 finish();
                 startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
-
-
             }
         });
 
