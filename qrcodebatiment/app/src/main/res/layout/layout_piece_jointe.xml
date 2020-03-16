@@ -74,7 +74,7 @@
             <TextView
                 android:id="@+id/DLPieceJointe"
                 android:layout_width="wrap_content"
-                android:layout_height=""
+                android:layout_height="60dp"
                 android:focusable="true"
                 android:text="TELECHARGER"
                 style="@style/Widget.AppCompat.Button.Colored"
