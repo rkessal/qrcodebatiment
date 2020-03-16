@@ -4,31 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".PieceJointeActivity">
+    <View
+        android:background="@color/colorPrimary"
+        android:id="@+id/topNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id="@+id/tvNumBatiment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/topNavBar"
+        style="@style/title_navbar"/>
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back_24px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/topNavBar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:clickable="true"
+        android:layout_marginLeft="15dp"/>
+
+
         <LinearLayout
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topNavBar"
             app:layout_constraintLeft_toLeftOf="parent"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="15dp">
-            <TextView
-                android:layout_gravity="center"
-                android:textColor="@color/colorBlackText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NUM BATIMENT"
-                android:id="@+id/tvNumBatiment"/>
 
             <TextView
                 android:id="@+id/tvDescBatiment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlackText"
-                android:text="DESC BATIMENT"
+                style="@style/title"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintTop_toBottomOf="@id/tvNumBatiment"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
@@ -40,20 +60,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="35dp"
                     android:id="@+id/lvItems"
-                    android:divider="@android:color/transparent"
+                    android:divider="@color/colorPrimary"
                     android:paddingBottom="40dp"
                     android:scrollbars="none"
                     android:clipToPadding="false"
-                    android:dividerHeight="10.0sp"/>
+                    android:dividerHeight="1dp">
+
+                </ListView>
         </LinearLayout>
-    <Button
-        android:id="@+id/btnRetour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="RETOUR"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

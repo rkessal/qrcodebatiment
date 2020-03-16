@@ -9,9 +9,9 @@ import retrofit2.http.Query;
 
 public interface GetDataService {
 
-    @GET("mxasset")
+    @GET("index.php")
     Call<MXAsset> getInfoBatiment(
-            @Query("assetnum") String batiment
+            @Query("q") String batiment
     );
 
 }

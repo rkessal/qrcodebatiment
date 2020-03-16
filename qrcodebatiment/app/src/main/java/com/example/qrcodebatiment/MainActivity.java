@@ -6,60 +6,82 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.qrcodebatiment.models.MXAsset;
 import com.example.qrcodebatiment.models.PieceJointe;
-import com.example.qrcodebatiment.network.GetDataService;
-import com.example.qrcodebatiment.network.RetrofitClientInstance;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
 
+    
     String str = "";
     ArrayList<PieceJointe> pieceJointes = new ArrayList<>();
     public static TextView text;
     Button btn;
     Button btnIdBatiment;
-    EditText etIdBatiment;
+    TextInputLayout etIdBatiment;
+
+    TextView tvScanner;
+    TextView tvSaisir;
+    ImageView ivSaisir;
+
     final String TAG = "MainAcivity";
     public static String batiment;
+    View btnNavSaisie;
+    View btnNavScan;
+    View navbar;
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = findViewById(R.id.btn);
         btnIdBatiment = findViewById(R.id.btnIdBatiment);
         etIdBatiment = findViewById(R.id.etIdBatiment);
+        navbar = findViewById(R.id.navbar);
+        btnNavSaisie = navbar.findViewById(R.id.saisie);
+        btnNavScan = navbar.findViewById(R.id.scan);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: " + batiment);
-                finish();
-                startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
-            }
-        });
+        ivSaisir = navbar.findViewById(R.id.ivSaisir);
+        ivSaisir.setImageResource(R.drawable.ic_search_selected_24px);
+        tvSaisir = navbar.findViewById(R.id.tvSaisir);
+        tvSaisir.setTextColor(getResources().getColor(R.color.colorPrimary));
 
         btnIdBatiment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (etIdBatiment != null) {
-                    PieceJointeActivity.idBatiment = etIdBatiment.getText().toString().trim().toUpperCase();
+                    PieceJointeActivity.idBatiment = etIdBatiment.getEditText().getText().toString().trim().toUpperCase();
                     startActivity(new Intent(getApplicationContext(), PieceJointeActivity.class));
                 }
             }
         });
+
+        btnNavScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            }
+        });
+
+
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
+
+
 
 
 

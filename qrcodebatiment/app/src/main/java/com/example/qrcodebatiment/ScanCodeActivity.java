@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -19,18 +22,40 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
     String TAG = "ScanCodeActivity";
     private String NUMBATIMENT = "";
     private ZXingScannerView mScannerView;
+    View btnNavSaisie;
+    View navbar;
+    TextView tvScanner;
+    ImageView ivScanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scan_code);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 123);
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
         }
-        mScannerView = new ZXingScannerView(this);
-        setContentView(mScannerView);
+        navbar = findViewById(R.id.navbar);
+        mScannerView = findViewById(R.id.zxscanner);
+
+
+        btnNavSaisie = navbar.findViewById(R.id.saisie);
+
+        ivScanner = navbar.findViewById(R.id.ivScanner);
+        ivScanner.setImageResource(R.drawable.ic_photo_camera_selected_24px);
+        tvScanner = navbar.findViewById(R.id.tvScanner);
+        tvScanner.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+        btnNavSaisie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            }
+        });
+
     }
 
     @Override
@@ -46,8 +71,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
     }
 
     @Override

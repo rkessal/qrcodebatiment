@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitClientInstance {
 
-    private static final String BASE_URL = "http://maximo.grandbesancon.fr/maxrest/rest/os/";
+    private static final String BASE_URL = "https://plansbatiments.grandbesancon.fr/api/";
     private static Retrofit retrofit;
     private static OkHttpClient httpClient;
     //private OkHttpClient.Builder httpClient  = new OkHttpClient.Builder();

@@ -6,38 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etIdBatiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/btnIdBatiment"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    <Button
-        android:id="@+id/btnIdBatiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="VALIDER"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-    <TextView
-        android:id="@+id/OU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OU"
-        app:layout_constraintTop_toBottomOf="@id/btnIdBatiment"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SCANNER QR CODE"
-        app:layout_constraintTop_toBottomOf="@id/OU"
+    <ImageView
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/logoGBM"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="5dp"/>
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_grandbesanconmetropole"/>
+    <LinearLayout
+        android:id="@+id/form"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/logoGBM"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
+
+        <TextView
+            style="@style/title"
+            app:layout_constraintTop_toBottomOf="@+id/logoGBM"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_numero_batiment"
+            android:layout_marginBottom="15dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etIdBatiment"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numéro du bâtiment"
+            app:helperTextEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/btnIdBatiment">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/form"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <Button
+                android:id="@+id/btnIdBatiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textColor="#fff"
+                android:text="VALIDER"
+                style="?android:attr/buttonBarButtonStyle"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/navbar"
+        layout="@layout/layout_bottom_menu"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
